@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Javascript Quiz</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <a class="navbar-brand" href="index.html">Javascript Quiz</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                <a class="nav-link" href="highscore.html">High Scores<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="js-quiz text-center">
+        <h1>Can you get a perfect score on this Javascipt Quiz?</h1>
+    </div>
+        
+    <div class="text-center">
+        
+        <button class="Button" id="start">Start Quiz</button>
+        <br>
+        <h2 id="timer"></h2>
+        
+    </div>
+        
+    <div class="container">
+        <h1 id="question-number"></h1>
+        <h2 id="current-question"></h2>
+        <div class="hide" id="visibility">
+        <label class="option row" ><input type="radio" name="choice" value="A"></input><span id="A"></span></label>
+        <label class="option row" ><input type="radio" name="choice" value="B"></input><span id="B"></span></label>
+        <label class="option row" ><input type="radio" name="choice" value="C"></input><span id="C"></span></label>
+        <label class="option row" ><input type="radio" name="choice" value="D"></input><span id="D"></span></label>
+        <p id="yes"></p><p id="no"></p>
+        </div>
+    
+    </div>
+    <div class="container">
+        <button class="row hide" id="nextQuestion">Next Question</button>
+        <button class="row hide2" id="finish">Finish</button>
+        
+    </div>
+        
+    <script src="javascript.js"></script>
+
+</body>
+</html>
