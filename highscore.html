@@ -4,43 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Javascript Quiz</title>
+    <title>Highscores</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
 </head>
 <body>
-    
+<!-- Bootstrap NavBar to allow users to toggle between Index HTML and Highscores HTML-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-        <a class="navbar-brand" href="index.html">Javascript Quiz</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                <a class="nav-link" href="highscore.html">High Scores<span class="sr-only">(current)</span></a>
-                </li>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    
+            <span class="navbar-toggler-icon"></span>
+    
+        </button>
+    
+            <a class="navbar-brand" href="index.html" title="Home">Javascript Quiz</a>
+    
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+    
+                    <li class="nav-item active">
+     
+                        <a class="nav-link" href="highscore.html" title="Highscores">Highscores<span class="sr-only">(current)</span></a>
+    
+                    </li>
             </ul>
         </div>
     </nav>
+<!-- End Bootstrap NavBar-->
 
-    <div class="js-quiz text-center">
-        <h1>Thank you for taking the Javascript Quiz!</h1>
-    </div>
-   
-
-    <form class="container">
-        <div class="form-row">
-            <div class="text-center form-group text-left col-md-12">
-                <label for="inputEmail4">Initials</label>
-                <input type="text" class="form-control text-center" id="inputEmail4" placeholder="john">
-                <button class="justify-content-center" id="submit"> Submit </button>
-            </div>
+<!-- Container to store top scores in descending order from local storage-->
+    <div class="container">
+    <!-- Top -->
+        <div id="top-scores" class="flex-center flex-column">
+            <h1 id="finalScore">High Scores</h1>
+            <ol id="highScoreList"></ol>
+            <a class="btn" href="/">Go Home</a>
         </div>
-    </form>
     </div>
-        <h2 class="text-center"> HighScores</h2>
-    </div>
+
+    <script src="highscorejavascript.js"></script>
 
     </body>
     </html>
         
+ 
