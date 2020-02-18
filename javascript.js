@@ -63,3 +63,40 @@ var score = 0;
 const highScores = JSON.parse(localStorage.getItem("highscores")) || [];
 // Sets a constant to the highest score on quiz of 5 points. 
 const maxHighScore = 5;
+
+// Stored Variables to retrieve ID's from document. 
+var start = document.querySelector("#start");
+var timer = document.querySelector("#timer")
+var quizQuestions = document.querySelector("#quiz-questions")
+var questionNumber = document.querySelector("#question-number")
+var currentQuestion = document.querySelector("#current-question");
+var choiceA = document.querySelector("#A");
+var choiceB = document.querySelector("#B");
+var choiceC = document.querySelector("#C");
+var choiceD = document.querySelector("#D");
+var newQuestion = document.querySelector("#nextQuestion");
+var finish = document.querySelector("#finish");
+var submit = document.querySelector("#submit");
+var initials = document.querySelector("#initials")
+var hsform = document.querySelector("#hsform");
+var myscore = document.querySelector("#score");
+
+//Timer function to start on Start Button click event. 
+function startTimer () {
+    timerInterval = setInterval(function() {
+        //Removes 1 second from time remaining. 
+        timeRemaining--;
+        timer.textContent= timeRemaining;
+    
+        //When clock equal to zero, stops the clock. 
+        if(timeRemaining === 0) {
+            clearInterval(timerInterval)
+
+        }
+    
+    }, 1000);
+
+}
+
+//Start Timer Event Listener.
+start.addEventListener("click", startTimer);
