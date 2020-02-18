@@ -38,11 +38,54 @@
     </nav>
 <!--End Bootsrap NavBar-->
 
+<!-- Quiz Header-->
+<div class="js-quiz text-center">
+    <h1>Can you get a perfect score on this Javascipt Quiz?</h1>
+</div>
+
+<!-- Highscore Input Form-->
+<form class="hide container" id="hsform">
+    <div class="form-row">
+        <div class="text-center form-group text-left col-md-12">
+            <!--Score Returned By JS-->
+            <div id="score"></div>
+            <!-- User input initials to submit Quiz taker score-->
+            <label for="initials">Please enter your intials here to submit your score!</label>
+            <input type="text" class="form-control text-center" id="initials" placeholder="ABC">
+            <!--Submit Button to store Quiz takers score and initals in local storage-->
+            <button class="justify-content-center" id="submit"> Submit </button>
+        </div>
+    </div>
+</form>
+
 <!-- Quiz Start Button and Timer-->
 <div class="text-center">
     <button class="Button" id="start">Start Quiz</button>
     <br>
     <h2 id="timer"></h2>
+    
+</div>
+
+<!-- Quiz-->
+<div id="quiz-questions" class="container hide">
+    <!-- Question Number-->
+    <h1 id="question-number"></h1>
+    <!-- Current Question-->
+    <h2 id="current-question"></h2>
+    <div>
+    <!-- Answer Options with individual radio type input-->
+    <label class="option row" ><input type="radio" name="choice" value="A"></input><span id="A"></span></label>
+    <label class="option row" ><input type="radio" name="choice" value="B"></input><span id="B"></span></label>
+    <label class="option row" ><input type="radio" name="choice" value="C"></input><span id="C"></span></label>
+    <label class="option row" ><input type="radio" name="choice" value="D"></input><span id="D"></span></label>
+    </div>
+
+</div>
+<div class="container">
+    <!-- Next Question Btn-->
+    <button class="row hide" id="nextQuestion">Next Question</button>
+    <!--Finish Quiz Btn-->
+    <button class="row hide2" id="finish">Finish</button>
     
 </div>
 
