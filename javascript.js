@@ -161,7 +161,81 @@ function nextQuestion() {
 
 
 
-//Start Timer Event Listener.
+
+function finishQuiz (){
+    clearInterval(timerInterval);
+    // Ensures that last question answered is scored when user clicks the finish button
+    var checkedOption = document.querySelector('input[type=radio]:checked');
+    var answer = checkedOption.value 
+    if(jsQuestions[questionValue].correct == answer){
+        score+=1;
+        questionValue++;
+        alert("That was correct!");
+    }
+    
+    // Returns the Users Quiz Score
+    myscore.textContent = ("Congradulations you got " + score + " out of 5");
+    //Sets the Highscore User Input CSS to Visible
+    hsform.setAttribute("style", "visibility: visible");
+    //Sets the Quiz Questions CSS to Hidden
+    quizQuestions.setAttribute("style", "visibility: hidden");
+    //Sets the Timer CSS to Hidden
+    timer.setAttribute("style", "visibility: hidden");
+    //Sets the New Question Button CSS to Hidden
+    newQuestion.setAttribute("style", "visibility: hidden");
+    //Sets the Finish Button CSS to Hidden
+    finish.setAttribute("style", "visibility: hidden");
+    
+
+};
+
+// Stored Function to End Quiz if Timer = 0s.
+function endQuiz(){
+    clearInterval(timerInterval);
+
+    // Returns the Users Quiz Score
+    myscore.textContent = ("Congradulations you got " + score + " out of 5");
+    //Sets the Highscore User Input CSS to Visible
+    hsform.setAttribute("style", "visibility: visible");
+    //Sets the Quiz Questions CSS to Hidden
+    quizQuestions.setAttribute("style", "visibility: hidden");
+    //Sets the Timer CSS to Hidden
+    timer.setAttribute("style", "visibility: hidden");
+    //Sets the New Question Button CSS to Hidden
+    newQuestion.setAttribute("style", "visibility: hidden");
+    //Sets the Finish Button CSS to Hidden
+    finish.setAttribute("style", "visibility: hidden");
+    
+};
+
+//Stored Function to Store Inials and Quiz Score in Local Storage. 
+function addToLeaderboard (event){
+    //Prevents Page from Refreshing on click. 
+    event.preventDefault();
+    //Stores Userscore as a object
+    var userScore = {
+        points: score,
+        name: initials.value
+    }
+    // Pushes Userscore to local storage
+    highScores.push(userScore);
+    //Stores the Highscores from Highest to Lowest. 
+    highScores.sort((a, b) => b.points- a.points);
+    //Stores only the top 5 Highest Scores. 
+    highScores.splice(5)
+    
+    //Stores Highscores in Local Storage
+    localStorage.setItem("highscores", JSON.stringify(highScores));
+    window.location.assign("highscore.html");
+};
+
+
+
+//Start Timer Event Listener to call Start Timer Function. 
 start.addEventListener("click", startTimer);
-//New Question Event Listener
+//New Question Event Listener to call Next Question Function. 
 newQuestion.addEventListener("click", nextQuestion);
+//Finish Event Listener to call Finish Quiz Function. 
+finish.addEventListener("click", finishQuiz);
+//Submit Event Listenter to call Add To Leaderboard Function. 
+submit.addEventListener("click", addToLeaderboard);
