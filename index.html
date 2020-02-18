@@ -5,55 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Javascript Quiz</title>
+<!-- Custom Style Sheet-->
     <link rel="stylesheet" type="text/css" href="style.css">
+<!-- Bootstrap Stylesheet-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
 </head>
 <body>
-    
+<!-- Bootstrap NavBar to allow users to toggle between Index HTML and Highscores HTML-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-        <a class="navbar-brand" href="index.html">Javascript Quiz</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                <a class="nav-link" href="highscore.html">High Scores<span class="sr-only">(current)</span></a>
-                </li>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    
+            <span class="navbar-toggler-icon"></span>
+    
+        </button>
+    
+            <a class="navbar-brand" href="index.html" title="Home">Javascript Quiz</a>
+    
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+    
+                    <li class="nav-item active">
+     
+                        <a class="nav-link" href="highscore.html" title="Highscores">Highscores<span class="sr-only">(current)</span></a>
+    
+                    </li>
             </ul>
         </div>
     </nav>
+<!--End Bootsrap NavBar-->
 
-    <div class="js-quiz text-center">
-        <h1>Can you get a perfect score on this Javascipt Quiz?</h1>
-    </div>
-        
-    <div class="text-center">
-        
-        <button class="Button" id="start">Start Quiz</button>
-        <br>
-        <h2 id="timer"></h2>
-        
-    </div>
-        
-    <div class="container">
-        <h1 id="question-number"></h1>
-        <h2 id="current-question"></h2>
-        <div class="hide" id="visibility">
-        <label class="option row" ><input type="radio" name="choice" value="A"></input><span id="A"></span></label>
-        <label class="option row" ><input type="radio" name="choice" value="B"></input><span id="B"></span></label>
-        <label class="option row" ><input type="radio" name="choice" value="C"></input><span id="C"></span></label>
-        <label class="option row" ><input type="radio" name="choice" value="D"></input><span id="D"></span></label>
-        <p id="yes"></p><p id="no"></p>
-        </div>
-    
-    </div>
-    <div class="container">
-        <button class="row hide" id="nextQuestion">Next Question</button>
-        <button class="row hide2" id="finish">Finish</button>
-        
-    </div>
-        
-    <script src="javascript.js"></script>
+<!--Bootstrap Scripts for NavBar and Custom Highscore Javascript-->
+<script src="javascript.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

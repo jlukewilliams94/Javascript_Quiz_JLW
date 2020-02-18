@@ -1,5 +1,8 @@
 var start = document.querySelector("#start");
+
 var timer = document.querySelector("#timer")
+
+var quizQuestions = document.querySelector("#quiz-questions")
 
 var questionNumber = document.querySelector("#question-number")
 
@@ -21,13 +24,21 @@ var correct = document.querySelector("#yes");
 
 var incorrect = document.querySelector("#no");
 
-var visibility = document.querySelector("#visibility");
-
 var submit = document.querySelector("#submit");
+
+var initials = document.querySelector("#initials")
+
+var hsform = document.querySelector("#hsform");
+
+var myscore = document.querySelector("#score");
+
 
 var score = 0;
 
+const highScores = JSON.parse(localStorage.getItem("highscores")) || [];
+console.log(highScores)
 
+const maxHighScore = 5;
  
 
 var jsQuestions = [{
@@ -89,9 +100,9 @@ var timerInterval
 
 var questionValue = 0;
 
+var timeRemaining = 60;
 
 //Start Time Function
-var timeRemaining = 20;
 
     function startTimer () {
         timerInterval = setInterval(function() {
@@ -102,32 +113,21 @@ var timeRemaining = 20;
             //Stops the clock with clearInterval
             if(timeRemaining === 0) {
                 clearInterval(timerInterval)
-                questionValue++;
-                renderQuestion()
+                endQuiz()
+
             }
         
-          }, 1000);
+        }, 1000);
 
+        renderQuestion()
 }
 
 
-function renderQuestion () {
-
-    clearInterval(timerInterval)
-    timeRemaining = 20
-    startTimer()
 
 
+    function renderQuestion () {
         
         questionNumber.textContent = ("Question # " + (questionValue + 1));
-        if(questionValue === 5){
-            endQuiz();
-        };
-
-        if(questionValue === nQuestions - 1) {
-            newQuestion.innerHTML = "Finish";
-            newQuestion.setAttribute("href", "https://www.google.com");
-        };
         
         var uniquequestion = jsQuestions[questionValue].question;
         currentQuestion.textContent = uniquequestion;
@@ -144,64 +144,101 @@ function renderQuestion () {
 
         var pickD = jsQuestions[questionValue].optionD;
         choiceD.textContent = pickD;
-
+    
+        quizQuestions.setAttribute("style", "visibility: visible");
+        start.setAttribute("style", "visibility: hidden");
         newQuestion.setAttribute("style", "visibility: visible");
-        visibility.setAttribute("style", "visibility: visible");
+
+
         console.log(score)
+
+        if(questionValue === nQuestions - 1) {
+            finish.setAttribute("style", "visibility: visible");
+            newQuestion.setAttribute("style", "visibility: hidden")
+        };
+
+        
 
 };
 
 function nextQuestion() {
 
-    clearInterval(timerInterval)
-
     var checkedOption = document.querySelector('input[type=radio]:checked');
-    answer = checkedOption.value
+    var answer = checkedOption.value
 
     if(jsQuestions[questionValue].correct == answer){
-        alert("that is correct");
         score+=1;
         questionValue++;
-
-
+        //alert("That was correct!");
     }
+
     else{
         questionValue++;
+        timeRemaining-=10;
+        //alert("Sorry that was incorrect!");
     }
-    
     
     renderQuestion()
     
 
 };
 
+function finishQuiz (){
+    clearInterval(timerInterval);
+
+    var checkedOption = document.querySelector('input[type=radio]:checked');
+    var answer = checkedOption.value 
+    if(jsQuestions[questionValue].correct == answer){
+        score+=1;
+        questionValue++;
+        alert("That was correct!");
+    }
+    myscore.textContent = ("Congradulations you got " + score + " out of 5");
+    hsform.setAttribute("style", "visibility: visible");
+    quizQuestions.setAttribute("style", "visibility: hidden");
+    timer.setAttribute("style", "visibility: hidden");
+    newQuestion.setAttribute("style", "visibility: hidden");
+    finish.setAttribute("style", "visibility: hidden");
+    
+
+}
+
 
 function endQuiz(){
     clearInterval(timerInterval);
-    questionNumber.textContent = ("Question # " + 5);
-    //location.replace("https://www.google.com");
-    alert("Your score is " + score + "/5")
+
+    myscore.textContent = ("Congradulations you got " + score + " out of 5");
+    hsform.setAttribute("style", "visibility: visible");
+    quizQuestions.setAttribute("style", "visibility: hidden");
+    timer.setAttribute("style", "visibility: hidden");
+    newQuestion.setAttribute("style", "visibility: hidden");
     
-}
+};
 
-function addToLeaderboard (event) {
-    ProgressEv
+function addToLeaderboard (event){
+    event.preventDefault();
+    console.log("clicked submit");
+    var userScore = {
+        points: score,
+        name: initials.value
+    }
+
+    highScores.push(userScore);
+    highScores.sort((a, b) => b.points- a.points);
+    highScores.splice(5)
+    
+    console.log(highScores);
+    localStorage.setItem("highscores", JSON.stringify(highScores));
+    window.location.assign("highscore.html");
+};
 
 
-}
 
 
-
-console.log(jsQuestions);
-
-console.log(nQuestions);
-console.log(questionValue);
-
-
-start.addEventListener("click", renderQuestion);
+start.addEventListener("click", startTimer);
 newQuestion.addEventListener("click", nextQuestion);
-finish.addEventListener("click", endQuiz);
-start.addEventListener("click", addToLeaderboard);
+finish.addEventListener("click", finishQuiz);
+submit.addEventListener("click", addToLeaderboard);
 
 
 
