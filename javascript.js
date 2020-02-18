@@ -1,46 +1,5 @@
-var start = document.querySelector("#start");
 
-var timer = document.querySelector("#timer")
-
-var quizQuestions = document.querySelector("#quiz-questions")
-
-var questionNumber = document.querySelector("#question-number")
-
-var currentQuestion = document.querySelector("#current-question");
-
-var choiceA = document.querySelector("#A");
-
-var choiceB = document.querySelector("#B");
-
-var choiceC = document.querySelector("#C");
-
-var choiceD = document.querySelector("#D");
-
-var newQuestion = document.querySelector("#nextQuestion");
-
-var finish = document.querySelector("#finish");
-
-var correct = document.querySelector("#yes");
-
-var incorrect = document.querySelector("#no");
-
-var submit = document.querySelector("#submit");
-
-var initials = document.querySelector("#initials")
-
-var hsform = document.querySelector("#hsform");
-
-var myscore = document.querySelector("#score");
-
-
-var score = 0;
-
-const highScores = JSON.parse(localStorage.getItem("highscores")) || [];
-console.log(highScores)
-
-const maxHighScore = 5;
- 
-
+// Array of Questions and Answers. Each Question is stored as an object. 
 var jsQuestions = [{
 
     question: "Inside which HTML element do we put the Javascript?",
@@ -90,156 +49,17 @@ var jsQuestions = [{
 
 }]
 
- 
-
-
-
+// Variable set to the length of the Questions Array. 
 var nQuestions= jsQuestions.length;
-
+// Global Time Interval Variable
 var timerInterval
-
+//Variable sets the Question Value to 0.
 var questionValue = 0;
-
+// Variable sets the Quiz Time to 60 seconds.
 var timeRemaining = 60;
-
-//Start Time Function
-
-    function startTimer () {
-        timerInterval = setInterval(function() {
-            //removes a second
-            timeRemaining--;
-            timer.textContent= timeRemaining;
-        
-            //Stops the clock with clearInterval
-            if(timeRemaining === 0) {
-                clearInterval(timerInterval)
-                endQuiz()
-
-            }
-        
-        }, 1000);
-
-        renderQuestion()
-}
-
-
-
-
-    function renderQuestion () {
-        
-        questionNumber.textContent = ("Question # " + (questionValue + 1));
-        
-        var uniquequestion = jsQuestions[questionValue].question;
-        currentQuestion.textContent = uniquequestion;
-
-
-        var pickA = jsQuestions[questionValue].optionA;
-        choiceA.textContent= pickA;
-        
-        var pickB = jsQuestions[questionValue].optionB;
-        choiceB.textContent = pickB;
-        
-        var pickC = jsQuestions[questionValue].optionC;
-        choiceC.textContent= pickC;
-
-        var pickD = jsQuestions[questionValue].optionD;
-        choiceD.textContent = pickD;
-    
-        quizQuestions.setAttribute("style", "visibility: visible");
-        start.setAttribute("style", "visibility: hidden");
-        newQuestion.setAttribute("style", "visibility: visible");
-
-
-        console.log(score)
-
-        if(questionValue === nQuestions - 1) {
-            finish.setAttribute("style", "visibility: visible");
-            newQuestion.setAttribute("style", "visibility: hidden")
-        };
-
-        
-
-};
-
-function nextQuestion() {
-
-    var checkedOption = document.querySelector('input[type=radio]:checked');
-    var answer = checkedOption.value
-
-    if(jsQuestions[questionValue].correct == answer){
-        score+=1;
-        questionValue++;
-        //alert("That was correct!");
-    }
-
-    else{
-        questionValue++;
-        timeRemaining-=10;
-        //alert("Sorry that was incorrect!");
-    }
-    
-    renderQuestion()
-    
-
-};
-
-function finishQuiz (){
-    clearInterval(timerInterval);
-
-    var checkedOption = document.querySelector('input[type=radio]:checked');
-    var answer = checkedOption.value 
-    if(jsQuestions[questionValue].correct == answer){
-        score+=1;
-        questionValue++;
-        alert("That was correct!");
-    }
-    myscore.textContent = ("Congradulations you got " + score + " out of 5");
-    hsform.setAttribute("style", "visibility: visible");
-    quizQuestions.setAttribute("style", "visibility: hidden");
-    timer.setAttribute("style", "visibility: hidden");
-    newQuestion.setAttribute("style", "visibility: hidden");
-    finish.setAttribute("style", "visibility: hidden");
-    
-
-}
-
-
-function endQuiz(){
-    clearInterval(timerInterval);
-
-    myscore.textContent = ("Congradulations you got " + score + " out of 5");
-    hsform.setAttribute("style", "visibility: visible");
-    quizQuestions.setAttribute("style", "visibility: hidden");
-    timer.setAttribute("style", "visibility: hidden");
-    newQuestion.setAttribute("style", "visibility: hidden");
-    
-};
-
-function addToLeaderboard (event){
-    event.preventDefault();
-    console.log("clicked submit");
-    var userScore = {
-        points: score,
-        name: initials.value
-    }
-
-    highScores.push(userScore);
-    highScores.sort((a, b) => b.points- a.points);
-    highScores.splice(5)
-    
-    console.log(highScores);
-    localStorage.setItem("highscores", JSON.stringify(highScores));
-    window.location.assign("highscore.html");
-};
-
-
-
-
-start.addEventListener("click", startTimer);
-newQuestion.addEventListener("click", nextQuestion);
-finish.addEventListener("click", finishQuiz);
-submit.addEventListener("click", addToLeaderboard);
-
-
-
-
+// Variable sets the initial score to 0 points.
+var score = 0;
+//Sets a constant to retrieve highscores in local storage. 
+const highScores = JSON.parse(localStorage.getItem("highscores")) || [];
+// Sets a constant to the highest score on quiz of 5 points. 
+const maxHighScore = 5;
