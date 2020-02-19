@@ -91,7 +91,7 @@ function startTimer () {
         //When clock equal to zero, stops the clock. 
         if(timeRemaining === 0) {
             clearInterval(timerInterval)
-
+            endQuiz()
         }
     
     }, 1000);
@@ -160,8 +160,6 @@ function nextQuestion() {
 };
 
 
-
-
 function finishQuiz (){
     clearInterval(timerInterval);
     // Ensures that last question answered is scored when user clicks the finish button
@@ -190,7 +188,7 @@ function finishQuiz (){
 };
 
 // Stored Function to End Quiz if Timer = 0s.
-function endQuiz(){
+function endQuiz() {
     clearInterval(timerInterval);
 
     // Returns the Users Quiz Score
