@@ -47,7 +47,7 @@
 /* Styling for Highscore Input Form, Quiz Timer, Answer Options and Highscore Leaderboard*/
 .hs-form,
 .option,
-.hs-leaderboard
+.hs-leaderboard,
 .quiz-timer {
     font-size:2rem;
     padding:1rem;
