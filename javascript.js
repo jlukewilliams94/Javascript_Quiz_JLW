@@ -214,13 +214,13 @@ function addToLeaderboard (event){
     var userScore = {
         points: score,
         name: initials.value
-    }
+    };
     // Pushes Userscore to local storage
     highScores.push(userScore);
     //Stores the Highscores from Highest to Lowest. 
     highScores.sort((a, b) => b.points- a.points);
     //Stores only the top 5 Highest Scores. 
-    highScores.splice(5)
+    highScores.splice(5);
     
     //Stores Highscores in Local Storage
     localStorage.setItem("highscores", JSON.stringify(highScores));
