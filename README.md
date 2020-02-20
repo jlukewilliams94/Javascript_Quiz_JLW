@@ -100,6 +100,10 @@ function renderQuestion () {
 3. When the game ends the user will be given the option to submit their name with their score to the highscore page. The score is stored in the local storage in the web browser. The score and name is stored as an object within an array and sorted by score from high to low. 
 
 //Stored Function to Store Inials and Quiz Score in Local Storage. 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 59564cd3d8703bbc6cfcd4147bb8e8f254840b46
 function addToLeaderboard (event){
     //Prevents Page from Refreshing on click. 
     event.preventDefault();
@@ -107,13 +111,21 @@ function addToLeaderboard (event){
     var userScore = {
         points: score,
         name: initials.value
+<<<<<<< HEAD
     }
+=======
+    };
+>>>>>>> 59564cd3d8703bbc6cfcd4147bb8e8f254840b46
     // Pushes Userscore to local storage
     highScores.push(userScore);
     //Stores the Highscores from Highest to Lowest. 
     highScores.sort((a, b) => b.points- a.points);
     //Stores only the top 5 Highest Scores. 
+<<<<<<< HEAD
     highScores.splice(5)
+=======
+    highScores.splice(5);
+>>>>>>> 59564cd3d8703bbc6cfcd4147bb8e8f254840b46
     
     //Stores Highscores in Local Storage
     localStorage.setItem("highscores", JSON.stringify(highScores));
