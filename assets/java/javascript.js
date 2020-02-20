@@ -89,7 +89,7 @@ function startTimer () {
         timer.textContent= timeRemaining;
     
         //When clock equal to zero, stops the clock. 
-        if(timeRemaining === 0) {
+        if(timeRemaining <= 0) {
             clearInterval(timerInterval)
             endQuiz()
         }
